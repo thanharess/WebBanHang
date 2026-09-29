@@ -1,0 +1,41 @@
+﻿@model IEnumerable<WebBanHang.Models.Product>
+
+@{
+    ViewData["Title"] = "Trang chủ - Cửa hàng trực tuyến";
+}
+
+<div class="container my-4">
+    <!-- Banner quảng cáo đầu trang -->
+    <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold text-dark">Chào mừng đến với Cửa hàng Golf King!</h1>
+            <p class="col-md-8 fs-4 text-muted">Chuyên cung cấp các sản phẩm thiết bị và phụ kiện golf chính hãng.</p>
+            <a href="#" class="btn btn-primary btn-lg">Khám phá ngay</a>
+        </div>
+    </div>
+
+    <!-- Tiêu đề phần sản phẩm -->
+    <div class="row mb-3">
+        <div class="col-12">
+            <h3 class="fw-bold border-bottom pb-2">🔥 Sản phẩm từ Database</h3>
+        </div>
+    </div>
+
+    <!-- Danh sách sản phẩm dạng lưới (Grid) -->
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+        @foreach (var item in Model)
+        {
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">@item.Name</h5>
+                        <p class="card-text text-danger fw-bold">@item.Price.ToString("N0") đ</p>
+                        <p class="card-text text-muted small">Tồn kho: @item.StockQuantity</p>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-outline-primary mt-auto">Xem chi tiết</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
